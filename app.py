@@ -4,7 +4,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 import re
 import os
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 import requests
 import numpy
 import time
@@ -249,7 +249,8 @@ def upload():
         message = "successful"
     elif checking(url_list)==-1:
         message = "has overlapped"
-    else message = "failed"
+    else:
+        message = "failed"
     
     crawling_page(url_list)
  
