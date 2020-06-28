@@ -170,7 +170,7 @@ def make_index(es, index_name):
       es.indices.delete(index=index_name)
       es.indices.create(index=index_name)
 
-    print(es.indices.create(index = index_name))
+    #print(es.indices.create(index = index_name))
 
 
 def insertData(es, index_name): 
@@ -178,7 +178,7 @@ def insertData(es, index_name):
       for i in range(0, len(datalist)):
          body = {
             'url' : datalist[i]["url"],
-            'execution' : datalist[i]["execution"],
+            'etc' : datalist[i]["etc"],
             'word_count' : datalist[i]["word_count"],
             'runtime' : datalist[i]["runtime"]
          }
@@ -187,7 +187,7 @@ def insertData(es, index_name):
       for i in range(0, len(datalist)):
          body = {
             'url' : datalist[i]["url"],
-            'execution' : datalist[i]["execution"],
+            'etc' : datalist[i]["etc"],
             'word_count' : datalist[i]["word_count"],
             'runtime' : datalist[i]["runtime"],
             'top3' : datalist[i]["top3"],
