@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title> URL LIST </title>
+<script language="javascript">
+var i = 0;
+var j = 0;
+var tf = "TOP10 Word\n";
+var cos = "TOP3 URL\n";
+function tfPopup() {
+window.open('', "TFIDF", "width=400,height=300,left=100,top=50");
+document.form0.action = "tfpop.html";
+document.form0.method = "post";
+document.form0.target = "TFIDF";
+document.form0.submit();
+}
+function cosPopup() {
+document.form1.action = "cospop.html";
+document.form1.method = "post";
+document.form1.target = "cossim";
+document.form1.submit();
+}
+function tfbtn(a){
+	alert(tf + a)
+}
+function cosbtn(a){
+	alert(cos + a)
+}
+</script>
+<style>
+      table {
+        width: 99%;
+        height: 150%;
+        border-top: 1px solid #444444;
+        border-radius: 15px;
+      }
+      th, td {
+        height: 35px;
+        border-bottom: 1px solid #444444;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        height: 38px;
+        border-radius: 10px;
+        background-color: #75FFCA;
+      }
+      tbody tr:nth-child(2n) {
+        background-color: #dcdcdc;
+      }
+      tbody tr:nth-child(2n+1) {
+        background-color: #FFFFFF;
+      }
+    </style>
+</head>
+<body>
+<br>
+<blockquote>
+<h1>웹사이트 분석 결과표</h1>
+</blockquote><br><br>
+<table>
+<caption>URL List</caption> 
+<br>
+<tbody>
+<tr>
+{% for key in urllist %}
+<td>{{ key }}</td>
+{% endfor %}
+</tr>
+<tr>
+{% for value in wordnum %}
+<td>{{ value }}</td>
+{% endfor %}
+</tr>
+<tr>
+{% for time in timelist %}
+<td>{{ time }}</td>
+{% endfor %}
+</tr>
+<tr>
+{% for tf in tflist %}
+<td><form>
+<input type="button" onclick="tfbtn({{ tf }});" value="단어분석"/>
+</form></td>
+{% endfor %}
+</tr>
+<tr>
+{% for cs in coslist %}
+<td><form>
+<input type="button" value="유사도분석" onclick="cosbtn({{ cs }});"/>
+</form></td>
+{% endfor %}
+</tr>
+</tbody>
+</table>
+</body>
+</html>
