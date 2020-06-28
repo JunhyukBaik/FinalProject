@@ -28,7 +28,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 def read_uploaded_file():
     filename = secure_filename(request.args.get('filename'))
     try:
@@ -195,24 +195,24 @@ def insertData(es, index_name):
                 'word_count' : words_list[i],
                 'runtime' : add_time[i]
             }
-         es.index(index = index_name, id = i+1, body = body)
-   else:
-    for i in range(0, len(url_list)):
-        body = {
-            'url' : url_list[i],
-            'word_count' : words_list[i],
-            'runtime' : add_time[i],
-            'top3' : cos_url[i],
-            'top10' : word_count[i]
-         }
-         es.index(index = index_name, id = i+1, body = body)
+        es.index(index = index_name, id = i+1, body = body)
+    else:
+        for i in range(0, len(url_list)):
+            body = {
+                'url' : url_list[i],
+                'word_count' : words_list[i],
+                'runtime' : add_time[i],
+                'top3' : cos_url[i],
+                'top10' : word_count[i]
+            }
+        es.index(index = index_name, id = i+1, body = body)
 
 
 def searchDB():
     index = index_for_search
     body = {
-        "query": {
-            "match_all": {}
+            "query": {
+                "match_all": {}
                 }
             }
 
