@@ -189,16 +189,16 @@ def make_index(es, index_name):
 
 def insertData(es, index_name): 
     if len(url_list) == 1:
-      for i in range(0, len(url_list)):
-         body = {
-            'url' : url_list[i],
-            'word_count' : words_list[i],
-            'runtime' : add_time[i]
-         }
+        for i in range(0, len(url_list)):
+            body = {
+                'url' : url_list[i],
+                'word_count' : words_list[i],
+                'runtime' : add_time[i]
+            }
          es.index(index = index_name, id = i+1, body = body)
    else:
-      for i in range(0, len(url_list)):
-         body = {
+    for i in range(0, len(url_list)):
+        body = {
             'url' : url_list[i],
             'word_count' : words_list[i],
             'runtime' : add_time[i],
@@ -211,8 +211,8 @@ def insertData(es, index_name):
 def searchDB():
     index = index_for_search
     body = {
-            "query": {
-                "match_all": {}
+        "query": {
+            "match_all": {}
                 }
             }
 
