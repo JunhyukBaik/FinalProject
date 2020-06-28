@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title> URL LIST </title>
+<script language="javascript">
+var tf = "TOP10 Word";
+var cos = "TOP3 URL";
+function tfPopup() {
+window.open('', "TFIDF", "width=400,height=300,left=100,top=50");
+document.form0.action = "tfpop.html";
+document.form0.method = "post";
+document.form0.target = "TFIDF";
+document.form0.submit();
+}
+function cosPopup() {
+window.open("", "cossim", "width=400,height=300,left=100,top=50");
+document.form1.action = "cospop.html";
+document.form1.method = "post";
+document.form1.target = "cossim";
+document.form1.submit();
+}
+function tfbtn(){
+	alert(tf)
+}
+function cosbtn(){
+	alert(cos)
+}
+</script>
+<style>
+      table {
+        width: 99%;
+        height: 150%;
+        border-top: 1px solid #444444;
+        border-radius: 15px;
+      }
+      th, td {
+        height: 35px;
+        border-bottom: 1px solid #444444;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        height: 38px;
+        border-radius: 10px;
+        background-color: #75FFCA;
+      }
+      tbody tr:nth-child(2n) {
+        background-color: #dcdcdc;
+      }
+      tbody tr:nth-child(2n+1) {
+        background-color: #FFFFFF;
+      }
+    </style>
+</head>
+<body>
+<br>
+<blockquote>
+<h1>웹사이트 분석 결과표</h1>
+</blockquote><br><br>
+<table>
+<caption>URL List</caption> 
+<br>
+<thead>
+<tr>
+<th>URL</th>
+<th>단어수</th>
+<th>처리시간</th>
+<th>TF-IDF</th>
+<th>Cosine Similarity</th>
+</tr>
+</thead>
+{% for key, value in result.items() %}
+<tbody>
+<tr>
+<td>{{ key }}</td>
+<td>{{ value }}</td>
+<td>0</td>
+<td><form>
+<input type="button" onclick="tfbtn();" value="단어분석"/>
+</form></td>
+<td><form>
+<input type="button" value="유사도분석" onclick="cosbtn();"/>
+</form></td>
+</tr>
+</tbody>
+{% endfor %}
+</table>
+</body>
+</html>

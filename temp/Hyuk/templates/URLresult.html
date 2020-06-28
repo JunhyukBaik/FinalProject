@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title> URL LIST </title>
+<script language="javascript">
+function tfPopup() {
+window.open('', "TFIDF", "width=400,height=300,left=100,top=50");
+document.form0.action = "tfpop.html";
+document.form0.method = "post";
+document.form0.target = "TFIDF";
+document.form0.submit();
+}
+function cosPopup() {
+window.open("", "cossim", "width=400,height=300,left=100,top=50");
+document.form1.action = "cospop.html";
+document.form1.method = "post";
+document.form1.target = "cossim";
+document.form1.submit();
+}
+</script>
+<style>
+      table {
+        width: 99%;
+        height: 150%;
+        border-top: 1px solid #444444;
+        border-radius: 15px;
+      }
+      th, td {
+        height: 35px;
+        border-bottom: 1px solid #444444;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        height: 38px;
+        border-radius: 10px;
+        background-color: #75FFCA;
+      }
+      tbody tr:nth-child(2n) {
+        background-color: #dcdcdc;
+      }
+      tbody tr:nth-child(2n+1) {
+        background-color: #FFFFFF;
+      }
+    </style>
+</head>
+<body>
+<br>
+<blockquote>
+<h1>웹사이트 분석 결과표</h1>
+</blockquote><br><br>
+<table>
+<caption>URL List</caption> 
+<br>
+<thead>
+<tr>
+<th>URL</th>
+<th>단어수</th>
+<th>처리시간</th>
+<th>TF-IDF</th>
+<th>Cosine Similarity</th>
+</tr>
+</thead>
+{% for key, value in result.items() %}
+<tbody>
+<tr>
+<td>{{ key }}</td>
+<td>{{ value }}</td>
+<td>60</td>
+<td>
+<form name="form0" method="post">
+<input type="hidden" name="w1">
+<input type="hidden" name="w2">
+<input type="hidden" name="w3">
+<input type="hidden" name="w4">
+<input type="hidden" name="w5">
+<input type="hidden" name="w6">
+<input type="hidden" name="w7">
+<input type="hidden" name="w8">
+<input type="hidden" name="w9">
+<input type="hidden" name="w10">
+<input type="button" value="단어분석" onclick="tfPopup();"/>
+</form></td>
+<td>
+<form name="form1" method="post">
+<input type="hidden" name="url1" value="hello">
+<input type="hidden" name="url2">
+<input type="hidden" name="url3">
+<input type="button" value="유사도분석" onclick="cosPopup();"/></td></form>
+</tr>
+</tbody>
+{% endfor %}
+</table>
+</body>
+</html>
