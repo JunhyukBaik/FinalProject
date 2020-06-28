@@ -61,8 +61,6 @@ chk_time1 = []
 chk_time2 = []
 add_time = []
 
-#데이터(es) 리스트
-data_list = []
 
 def word_cnt(sentence_list):
     for sent in sentence_list:
@@ -182,20 +180,20 @@ def make_index(es, index_name):
 
 
 def insertData(es, index_name): 
-    if len(datalist) == 1:
-      for i in range(0, len(datalist)):
+    if len(url_list) == 1:
+      for i in range(0, len(url_list)):
          body = {
             'url' : url_list[i],
             'word_count' : words_list[i],
-            'runtime' : datalist[i]["runtime"]
+            'runtime' : add_time[i]
          }
          es.index(index = index_name, id = i+1, body = body)
    else:
-      for i in range(0, len(datalist)):
+      for i in range(0, len(url_list)):
          body = {
             'url' : url_list[i],
             'word_count' : words_list[i],
-            'runtime' : datalist[i]["runtime"],
+            'runtime' : add_time[i],
             'top3' : cos_url[i],
             'top10' : word_count[i]
          }
