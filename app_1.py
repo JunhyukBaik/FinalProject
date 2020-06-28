@@ -59,6 +59,9 @@ word_count = []
 #시간 리스트
 chk_time = []
 
+#데이터(es) 리스트
+data_list = []
+
 def word_cnt(sentence_list):
     for sent in sentence_list:
         emptylist = sent.split()
@@ -75,6 +78,7 @@ def crawling_page(urllist):
         for data in p_data:
             data = data.get_text().replace('\t', '').replace('\n', '').replace('\r', '').strip().rstrip()
             url_sentence.append(data)
+            datalist.append(data)
         url_sentence2 = " ".join(url_sentence)
         url_sent_list.append(url_sentence2)
 
