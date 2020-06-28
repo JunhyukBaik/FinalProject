@@ -24,6 +24,7 @@ def read_uploaded_file():
     except IOError:
         pass
     return "Unable to read file"
+#여기까지 파일체크
 def crawling_page(urllist):
     for url in urllist:
         page = requests.get(url)
@@ -41,11 +42,11 @@ def process_newsentence(s):
 sent_list = []
 word_d = {}
 
-@app.route('/')
+@app.route('/') #디폴트페이지
 def home():
     return render_template('OSP_finhome.html')
 
-@app.route('/result', methods = ['GET', 'POST'])
+@app.route('/result', methods = ['GET', 'POST'])#버튼/업로드
 def upload():
     if request.method == 'POST':
         file = request.files['file'] #단일url
