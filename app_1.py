@@ -57,7 +57,9 @@ url_sent_list = []
 word_count = []
 
 #시간 리스트
-chk_time = []
+chk_time1 = []
+chk_time2 = []
+add_time = []
 
 #데이터(es) 리스트
 data_list = []
@@ -158,6 +160,8 @@ def calcul_tfidf(urlsentlist):
         freq = {}
         word_icount = []
         tf_d = compute_tf(sent_list[i])
+        ntime = time.time() - start
+        chk_time1.append(ntime)
         for word, tfval in tf_d.items():
             freq[word] = tfval*idf_d[word]
         lists = sorted(freq.items(), key=lambda x:x[1], reverse=True)
@@ -249,11 +253,14 @@ def upload():
 
     
     for i in range(len(url_sent_list)):
+        start = time.time()
         for j in range(len(url_sent_list)): 
             cos = calcul_cossim(url_sent_list[i], url_sent_list[j])
             cossim_inlist.append(cos)
         cossim_list.append(cossim_inlist)
         cossim_inlist = []
+        ntime = time.time() - start
+        chk_time2.append(ntime)
     
     #Cosine Similarity Top3 url index list
     cossim_index_list = []
@@ -276,6 +283,7 @@ def upload():
 
     calcul_tfidf(url_sent_list)
     word_cnt(url_sent_list)
+    add_time = [x+y for x,y in zip(chk_time1, chk_time2)]
     
     
-    return render_template('URLresult.html', urllist=url_list, wordnum=words_list, coslist=cos_url, tflist=word_count, timelist=chk_time)
+    return render_template('URLresult.html', urllist=url_list, wordnum=words_list, coslist=cos_url, tflist=word_count, timelist=add_time)
