@@ -185,21 +185,19 @@ def insertData(es, index_name):
     if len(datalist) == 1:
       for i in range(0, len(datalist)):
          body = {
-            'url' : datalist[i]["url"],
-            'etc' : datalist[i]["etc"],
-            'word_count' : datalist[i]["word_count"],
+            'url' : url_list[i],
+            'word_count' : words_list[i],
             'runtime' : datalist[i]["runtime"]
          }
          es.index(index = index_name, id = i+1, body = body)
    else:
       for i in range(0, len(datalist)):
          body = {
-            'url' : datalist[i]["url"],
-            'etc' : datalist[i]["etc"],
-            'word_count' : datalist[i]["word_count"],
+            'url' : url_list[i],
+            'word_count' : words_list[i],
             'runtime' : datalist[i]["runtime"],
-            'top3' : datalist[i]["top3"],
-            'top10' : datalist[i]["top10"]
+            'top3' : cos_url[i],
+            'top10' : word_count[i]
          }
          es.index(index = index_name, id = i+1, body = body)
 
