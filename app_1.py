@@ -68,7 +68,15 @@ def word_cnt(sentence_list):
         cnt = len(emptylist)
         words_list.append(cnt)
 
-
+def checking(urllist):
+    tmplst = []
+    for l in urllist:
+        tmplist.append(l)
+    if urllist==tmplist:
+        return 1
+    else:
+        return -1
+        
 def crawling_page(urllist):
     for url in urllist:
         url_sentence = []
@@ -236,7 +244,13 @@ def upload():
                 #분석~
         else: #단일
             url_list.append(singleurl)
-
+            
+    if checking(url_list)==1:
+        message = "successful"
+    elif checking(url_list)==-1:
+        message = "has overlapped"
+    else message = "failed"
+    
     crawling_page(url_list)
  
     es = Elasticsearch([{'host':es_host, 'port':es_port}], timeout = 30)
