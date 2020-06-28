@@ -25,22 +25,46 @@ def read_uploaded_file():
         pass
     return "Unable to read file"
 #여기까지 파일체크
+word_d = {}
+sent_list = []
+
+#URL예시
+url_dic = {
+        'https://ignite.apache.org/' : 400,
+        'http://kafka.apache.org/' : 350,
+        'http://helix.apache.org/' : 240,
+        'http://madlib.apache.org/' : 260
+        }
+words_list = []
+
+url_list = []
+
+url_sent_list = []
+
+word_count = []
+
+def word_cnt(sentence_list):
+    for sent in sentence_list:
+        emptylist = sent.split()
+        cnt = len(emptylist)
+        words_list.append(cnt)
+
+def url_input_list(dic):
+    for key in dic.keys():
+        url_list.append(key)
+
 def crawling_page(urllist):
     for url in urllist:
+        url_sentence = []
         page = requests.get(url)
-    return page
-        
+        html = BeautifulSoup(page.content, 'html.parser')
+        p_data = html.find_all('p')
+        for data in p_data:
+            data = data.get_text().replace('\t', '').replace('\n', '').replace('\r', '').strip().rstrip()
+            url_sentence.append(data)
+        url_sentence2 = " ".join(url_sentence)
+        url_sent_list.append(url_sentence2)
 
-def process_newsentence(s):
-    sent_list.append(s)
-    tokenized = word_tokenize(s)
-    for word in tokenized:
-        if word not in word_d.keys():
-            word_d[word] = 0
-        word_d[word] += 1
-
-sent_list = []
-word_d = {}
 
 @app.route('/') #디폴트페이지
 def home():
@@ -63,8 +87,7 @@ def upload():
                     return redirect(request.url)
                 
                 for urls in lsts:
-                    page = crawling_page(urls)
-                    process_newsentences(page)
+                    url_list.append(urls)
                 #분석~
         else: #단일
             page = crawling_page(singleurl)
