@@ -80,7 +80,7 @@ def crawling_page(urllist):
         for data in p_data:
             data = data.get_text().replace('\t', '').replace('\n', '').replace('\r', '').strip().rstrip()
             url_sentence.append(data)
-            datalist.append(data)
+            
         url_sentence2 = " ".join(url_sentence)
         url_sent_list.append(url_sentence2)
 
