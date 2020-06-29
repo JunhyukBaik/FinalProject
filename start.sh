@@ -13,13 +13,6 @@ if [ -f "URLresult.html" ]; then
 	mv URLresult.html templates
 fi
 
-if [ -f "cospop.html" ]; then
-	mv cospop.html templates
-fi
-
-if [ -f "tfpop.html" ]; then
-	mv tfpop.html templates
-fi
 
 if [ -f "OSP_finhome.html" ]; then
 	mv OSP_finhome.html templates
